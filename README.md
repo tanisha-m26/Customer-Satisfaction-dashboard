@@ -27,7 +27,7 @@ You can access the live app here: ML Explainability Dashboard
 
 Clone the repository:
 
-git clone https://github.com/your-username/ml-explainability-app.git
+git clone https://github.com/tanisha-m26/Customer-Satisfaction-dashboard
 cd ml-explainability-app
 
 
