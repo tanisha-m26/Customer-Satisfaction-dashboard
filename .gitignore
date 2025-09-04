@@ -1,0 +1,12 @@
+/data/*
+!/data/.gitkeep
+/reports/*
+!/reports/.gitkeep
+*.pyc
+__pycache__/
+.ipynb_checkpoints/
+.env
+models/
+*.pkl
+*.csv
+.DS_Store
