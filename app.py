@@ -12,6 +12,7 @@ import shap
 import warnings
 warnings.filterwarnings("ignore")
 
+import os
 # -----------------------------
 # Page Config
 # -----------------------------
@@ -26,15 +27,22 @@ uploaded_file = st.sidebar.file_uploader("Upload a CSV file (customer support ti
 retrain_button = st.sidebar.button("🔁 Retrain model on current dataset")
 
 @st.cache_data
-def load_data(file):
-    if file is not None:
-        df = pd.read_csv(file)
-    else:
-        # change path if needed
-        df = pd.read_csv("D:\\Customer-Satisfaction-dashboard\\data\\customer_support_tickets.csv")
-    return df
 
+
+def load_data(uploaded_file):
+    if uploaded_file is not None:
+        return pd.read_csv(uploaded_file)
+    else:
+        # fallback to default dataset inside repo
+        return pd.read_csv(os.path.join("data", "D:\\Customer-Satisfaction-dashboard\\data\\customer_support_tickets.csv"))
+
+
+uploaded_file = st.file_uploader("📂 Upload Customer Support Tickets CSV", type=["csv"])
 df_raw = load_data(uploaded_file)
+
+if df_raw is None:
+    st.warning("⚠️ Please upload a dataset to proceed.")
+    st.stop()
 
 # Upload feedback
 if uploaded_file:
